@@ -13,6 +13,14 @@
     - __PYTHON_ENV__ is a python environment with "Requests" library installed, it would be like `/Users/{your mac user name}/miniconda3/bin/python` if you follow step 0 to install Python and "Requests".
     - __UNAME__ is your ID for login to nuaa.portal, like `123456`.
 4. Click on "import" to import "Auto nuaa.portal" into your Alfred workflows.
+5. Disable the "Captive Network Support" in macOS using 
+```
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.captive.control Active -boolean false
+```
+This step is required due to terminal can not access to the network when there is a captive network popup for inputting username and password, see [this discussion](https://apple.stackexchange.com/questions/45418/how-to-automatically-login-to-captive-portals-on-os-x) for detail. In case you want to remove this setting use
+```
+sudo defaults delete /Library/Preferences/SystemConfiguration/com.apple.captive.control Active
+```
 
 
 # Usage
@@ -24,13 +32,18 @@
 # Changelog
 For the versions available, see [releases on this repository](https://github.com/phguo/Auto-nuaa.portal/releases).
 
+- [__v1.0__](https://github.com/phguo/Auto-nuaa.portal/releases/tag/v1.0) - May 21, 2020
+    - *Update:* This workflow will not work till the WebView popup for captive portal is closed, fixed this by disable the "Captive Network Support" in macOS.
+    - *Add:* Added an optional `config.py` file to store username and password.
+    - *Update:* Modified the request URL.
+
 - [__v0.9__](https://github.com/phguo/Auto-nuaa.portal/releases/tag/v0.9) - May 8, 2020
-    - *Added:* Using keyword "nuaa login" to login to "nuaa.portal".
-    - *Added:* Using keyword "nuaa logout" to log out.
+    - *Add:* Using keyword "nuaa login" to login to "nuaa.portal".
+    - *Add:* Using keyword "nuaa logout" to log out.
 
 
 # TODO
-- ❎Get SSID of current WiFi connection.
+- [ ] Get SSID of current WiFi connection.
 
 
 # License
@@ -38,4 +51,9 @@ This project is licensed under the MIT License, see the [LICENSE](https://github
 
 
 # Acknowledgments
-This project referred to [nuaa_portal_login_cli](https://github.com/RyanSu98/nuaa_portal_login_cli).
+This project referred to 
+
+1. [nuaa_portal_login_cli](https://github.com/RyanSu98/nuaa_portal_login_cli)
+2. [需要captive portal方式认证WiFi的自动登录方法](https://zhuanlan.zhihu.com/p/21412687)
+3. [How to automatically login to captive portals on OS X?](https://apple.stackexchange.com/questions/45418/how-to-automatically-login-to-captive-portals-on-os-x)
+4. [nuistconnect](https://github.com/RRRRRm/nuistconnect/)
