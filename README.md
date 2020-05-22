@@ -1,8 +1,15 @@
-# Alfred Workflow "Auto nuaa.portal"
-"Auto nuaa.portal" is a Alfred workflow to automatically login to nuaa.portal on MacOS.
+# Auto nuaa.portal
+"Auto nuaa.portal" is a project for automatically login to "nuaa.portal" (南京航空航天大学校园无线网) without input username and password manually.
 
+## iOS "Shortcuts"
+The Shortcuts for iOS can be downloaded from [here](https://www.icloud.com/shortcuts/a034bd37f093425d962a6baff717d1d0).
 
-# Getting Started
+## Android "Tasker"
+
+## macOS "Alfred"
+The Alfred workflow for macOS can be deployed follow the following steps.
+
+### Getting Started
 0. Install Python with "Requests" library.
     - Install [Miniconda Python](https://docs.conda.io/en/latest/miniconda.html#macosx-installers).
     - Install [Requests](https://requests.readthedocs.io/en/master/).
@@ -23,13 +30,13 @@ sudo defaults delete /Library/Preferences/SystemConfiguration/com.apple.captive.
 ```
 
 
-# Usage
+### Usage
 - Connect to "nuaa.portal".
 - Using with Alfred keyword "nuaa login" to login to "nuaa.portal".
 - Using with Alfred keyword "nuaa logout" to log out.
 
 
-# Changelog
+### Changelog
 For the versions available, see [releases on this repository](https://github.com/phguo/Auto-nuaa.portal/releases).
 
 - [__v1.0__](https://github.com/phguo/Auto-nuaa.portal/releases/tag/v1.0) - May 21, 2020
@@ -42,15 +49,15 @@ For the versions available, see [releases on this repository](https://github.com
     - *Add:* Using keyword "nuaa logout" to log out.
 
 
-# TODO
+### TODO
 - [ ] Get SSID of current WiFi connection.
 
 
-# License
+## License
 This project is licensed under the MIT License, see the [LICENSE](https://github.com/phguo/Auto-nuaa.portal/blob/master/LICENSE) file for details.
 
 
-# Acknowledgments
+## Acknowledgments
 This project referred to 
 
 1. [nuaa_portal_login_cli](https://github.com/RyanSu98/nuaa_portal_login_cli)
