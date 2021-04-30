@@ -1,17 +1,48 @@
 # Auto nuaa.portal
 "Auto nuaa.portal" is a project for automatically login to "nuaa.portal" (南京航空航天大学校园无线网) without input username and password manually.
 
+---
+
 ## iOS "Shortcuts"
 The Shortcuts for iOS can be downloaded from [here](https://www.icloud.com/shortcuts/a034bd37f093425d962a6baff717d1d0).
 
-## Android "Tasker"
+---
 
-## macOS "Alfred"
-The Alfred workflow for macOS can be deployed by following steps.
+## MacOS "Hammerspoon"
+Following is a [Hammerspoon
+](http://www.hammerspoon.org/)(which is "*a tool for powerful automation of OS X*") config which can be also found at [auto-nuaa.portal.lua](https://github.com/phguo/Auto-nuaa.portal/blob/master/auto-nuaa.portal.lua).  This config file allow your Mac automatically run `login.py` whenever it is connected to `nuaa.portal`. 
+
+```lua
+nuaaSSID = "nuaa.portal"
+lastSSID = hs.wifi.currentNetwork()
+function ssidChangedCallback()
+    newSSID = hs.wifi.currentNetwork()
+    if newSSID == nuaaSSID then
+        command = "<directory of Python> '<directory of login.py>'"
+        local handle = io.popen(command)
+        local result = handle:read("*a")
+        handle:close()
+        hs.notify.new({title="Hammerspoon", informativeText=result}):send()
+    end  
+    lastSSID = newSSID
+end
+wifiWatcher = hs.wifi.watcher.new(ssidChangedCallback)
+wifiWatcher:start()
+```
+NOTICE: 
+
+- __DO NOT FORGET__ to replace `<directory of Python>` and `<directory of login.py>`; 
+
+- To use this config file, "username" and "password" must be set in `config.py`.
+
+---
+
+## MacOS "Alfred"
+The Alfred workflow for MacOS can be deployed by following steps.
 
 ### Getting Started
 0. Install Python with "Requests" library.
-    - Install [Miniconda Python](https://docs.conda.io/en/latest/miniconda.html#macosx-installers).
+    - Install [Miniconda Python](https://docs.conda.io/en/latest/miniconda.html#MacOSx-installers).
     - Install [Requests](https://requests.readthedocs.io/en/master/).
 1. Install [Alfred 4](https://www.alfredapp.com/) (this workflow may also compatible with Alfred 3 and Alfred 2, not tested) with a [Powerpack](https://www.alfredapp.com/shop/) licence.
 2. Download workflow source file from [release page](https://github.com/phguo/Auto-nuaa.portal/releases) and double-click.
@@ -20,7 +51,7 @@ The Alfred workflow for macOS can be deployed by following steps.
     - __PASSWORD__ is your password, like `123456`.
     - __PYTHON_ENV__ is a python environment with "Requests" library installed, it would be like `/Users/{your mac user name}/miniconda3/bin/python` if you follow step 0 to install Python and "Requests".
 4. Click on "import" to import "Auto nuaa.portal" into your Alfred workflows.
-5. Disable the "Captive Network Support" in macOS using 
+5. Disable the "Captive Network Support" in MacOS using 
 ```
 sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.captive.control Active -boolean false
 ```
@@ -29,18 +60,21 @@ This step is required due to terminal can not access to the network when there i
 sudo defaults delete /Library/Preferences/SystemConfiguration/com.apple.captive.control Active
 ```
 
-
 ### Usage
 - Connect to "nuaa.portal".
 - Using with Alfred keyword "nuaa login" to login to "nuaa.portal".
 - Using with Alfred keyword "nuaa logout" to log out.
 
+---
 
 ### Changelog
 For the versions available, see [releases on this repository](https://github.com/phguo/Auto-nuaa.portal/releases).
 
+- __v1.0.1__ - May 01, 2021
+    - *Add:* Added an Hammerspoon config file `uto-nuaa.portal.lua`.
+
 - [__v1.0__](https://github.com/phguo/Auto-nuaa.portal/releases/tag/v1.0) - May 21, 2020
-    - *Update:* This workflow will not work till the WebView popup for captive portal is closed, fixed this by disable the "Captive Network Support" in macOS.
+    - *Update:* This workflow will not work till the WebView popup for captive portal is closed, fixed this by disable the "Captive Network Support" in MacOS.
     - *Add:* Added an optional `config.py` file to store username and password.
     - *Update:* Modified the request URL.
 
