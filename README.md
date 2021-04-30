@@ -1,12 +1,10 @@
 # Auto nuaa.portal
 "Auto nuaa.portal" is a project for automatically login to "nuaa.portal" (南京航空航天大学校园无线网) without input username and password manually.
 
----
 
 ## iOS "Shortcuts"
 The Shortcuts for iOS can be downloaded from [here](https://www.icloud.com/shortcuts/a034bd37f093425d962a6baff717d1d0).
 
----
 
 ## MacOS "Hammerspoon"
 Following is a [Hammerspoon
@@ -35,7 +33,6 @@ NOTICE:
 
 - To use this config file, "username" and "password" must be set in `config.py`.
 
----
 
 ## MacOS "Alfred"
 The Alfred workflow for MacOS can be deployed by following steps.
@@ -65,7 +62,6 @@ sudo defaults delete /Library/Preferences/SystemConfiguration/com.apple.captive.
 - Using with Alfred keyword "nuaa login" to login to "nuaa.portal".
 - Using with Alfred keyword "nuaa logout" to log out.
 
----
 
 ### Changelog
 For the versions available, see [releases on this repository](https://github.com/phguo/Auto-nuaa.portal/releases).
