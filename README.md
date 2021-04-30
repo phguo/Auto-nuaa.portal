@@ -67,7 +67,7 @@ sudo defaults delete /Library/Preferences/SystemConfiguration/com.apple.captive.
 For the versions available, see [releases on this repository](https://github.com/phguo/Auto-nuaa.portal/releases).
 
 - __v1.0.1__ - May 01, 2021
-    - *Add:* Added an Hammerspoon config file `uto-nuaa.portal.lua`.
+    - *Add:* Added a Hammerspoon config file `uto-nuaa.portal.lua`.
 
 - [__v1.0__](https://github.com/phguo/Auto-nuaa.portal/releases/tag/v1.0) - May 21, 2020
     - *Update:* This workflow will not work till the WebView popup for captive portal is closed, fixed this by disable the "Captive Network Support" in MacOS.
