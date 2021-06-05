@@ -47,6 +47,7 @@ The Alfred workflow for MacOS can be deployed by following steps.
     - __UNAME__ is your ID for login to nuaa.portal, like `BX9999999`.
     - __PASSWORD__ is your password, like `123456`.
     - __PYTHON_ENV__ is a python environment with "Requests" library installed, it would be like `/Users/{your mac user name}/miniconda3/bin/python` if you follow step 0 to install Python and "Requests".
+    - __LOGIN_IP__  is for users at different campus, the Jiangning campus ip is `211.65.106.6`.
 4. Click on "import" to import "Auto nuaa.portal" into your Alfred workflows.
 5. Disable the "Captive Network Support" in MacOS using 
 ```
@@ -66,14 +67,17 @@ sudo defaults delete /Library/Preferences/SystemConfiguration/com.apple.captive.
 ### Changelog
 For the versions available, see [releases on this repository](https://github.com/phguo/Auto-nuaa.portal/releases).
 
+- [__v1.1__](https://github.com/phguo/Auto-nuaa.portal/releases/tag/v1.1) - Jun. 05, 2021
+    - Influence Hammerspoon and Alfred workflow.
+    - *Fix:* Login failure causing by `get_ip` in `login.py` ([issue](https://github.com/phguo/Auto-nuaa.portal/issues/2)).
+    - *Add:* Entry for customize authentication server ip address ([issue](https://github.com/phguo/Auto-nuaa.portal/issues/1)).
+
 - __v1.0.1__ - May 01, 2021
     - *Add:* Added a Hammerspoon config file `auto-nuaa.portal.lua`.
-
 - [__v1.0__](https://github.com/phguo/Auto-nuaa.portal/releases/tag/v1.0) - May 21, 2020
     - *Update:* This workflow will not work till the WebView popup for captive portal is closed, fixed this by disable the "Captive Network Support" in MacOS.
     - *Add:* Added an optional `config.py` file to store username and password.
     - *Update:* Modified the request URL.
-
 - [__v0.9__](https://github.com/phguo/Auto-nuaa.portal/releases/tag/v0.9) - May 8, 2020
     - *Add:* Using keyword "nuaa login" to login to "nuaa.portal".
     - *Add:* Using keyword "nuaa logout" to log out.

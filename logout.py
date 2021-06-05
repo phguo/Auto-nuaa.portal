@@ -2,9 +2,10 @@ import sys
 import requests
 import json
 from login import get_ip
+import uuid
 
 
-def logout():
+def logout(login_ip='211.65.106.6'):
     parameters = {
         "c": "Portal",
         "a": "logout",
@@ -17,13 +18,13 @@ def logout():
         "wlan_user_ip": get_ip(),
         "wlan_user_ipv6": "",
         "wlan_vlan_id": "",
-        "wlan_user_mac": "",
+        "wlan_user_mac": hex(uuid.getnode())[2:],
         "wlan_ac_ip": "",
         "wlan_ac_name": "",
         "jsVersion": "3.3.2",
         "v": "8914"
     }
-    logout_url = "http://211.65.106.6:801/eportal/"
+    logout_url = "http://{}:801/eportal/".format(login_ip)
 
     logout_request = requests.get(logout_url, params=parameters)
     logout_text_content = logout_request.text
@@ -51,7 +52,15 @@ def logout():
 
 if __name__ == "__main__":
     try:
-        query = logout()
+        from config import LOGIN_IP
+        query = logout(LOGIN_IP)
     except:
-        query = "Unknown Error for Log out!"
-    sys.stdout.write(query)
+        try:
+            query = logout(sys.argv[1])
+        except:
+            try:
+                query = logout()
+            except:
+                query = "Unknown Error for Log out!"
+    finally:
+        sys.stdout.write(query)
